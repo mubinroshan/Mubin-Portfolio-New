@@ -95,19 +95,31 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form Submission (Simulated)
+// Form Submission Handling
 const contactForm = document.querySelector('.contact-form');
+const successModal = document.getElementById('success-modal');
+const closeModalBtn = document.getElementById('close-modal');
+
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const btn = contactForm.querySelector('button');
         const originalText = btn.textContent;
+        const formData = new FormData(contactForm);
 
         btn.textContent = 'Sending...';
         btn.style.opacity = '0.7';
         btn.disabled = true;
 
-        setTimeout(() => {
+        // Send data to Google Forms
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        }).then(() => {
+            // Show Success Modal
+            successModal.classList.add('active');
+
             btn.textContent = 'Message Sent!';
             btn.style.background = 'var(--accent)';
             contactForm.reset();
@@ -118,6 +130,31 @@ if (contactForm) {
                 btn.disabled = false;
                 btn.style.opacity = '1';
             }, 3000);
-        }, 1500);
+        }).catch(err => {
+            console.error('Submission error:', err);
+            btn.textContent = 'Error!';
+            btn.style.background = '#ff4b2b';
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+            }, 3000);
+        });
     });
 }
+
+// Close Modal Logic
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
+        successModal.classList.remove('active');
+    });
+}
+
+// Close modal on click outside content
+window.addEventListener('click', (e) => {
+    if (e.target === successModal) {
+        successModal.classList.remove('active');
+    }
+});
