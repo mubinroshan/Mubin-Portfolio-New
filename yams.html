@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YAMS - YNH Asset Management System. Technical details and deployment guide.">
+    <title>YAMS Project Details | Mubin Roshan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .project-detail-container {
+            padding: 8rem 0 5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .detail-card {
+            background: var(--darker);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .detail-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-header p {
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+
+        .detail-section {
+            margin-bottom: 3rem;
+        }
+
+        .detail-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--secondary);
+        }
+
+        .detail-section h2::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: var(--glass-border);
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--light);
+        }
+
+        .detail-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--primary);
+        }
+
+        pre {
+            background: #0d1117;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid var(--glass-border);
+            margin: 1.5rem 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e6edf3;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stack-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stack-item strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .step-box {
+            background: rgba(94, 255, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .project-detail-container {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .detail-card {
+                padding: 1.5rem;
+            }
+
+            .detail-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar active">
+        <div class="container">
+            <a href="index.html" class="logo">Mubin<span>Roshan</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container project-detail-container">
+        <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+
+        <div class="detail-card">
+            <header class="detail-header">
+                <h1>YAMS | YNH Asset Management System</h1>
+                <p>A modern IT Inventory and Network Mapping system built for YNH Hospital.</p>
+            </header>
+
+            <section class="detail-section">
+                <h2><i class="fas fa-layer-group"></i> Technical Stack</h2>
+                <div class="stack-grid">
+                    <div class="stack-item">
+                        <strong>Frontend</strong>
+                        Next.js 14, React 18, Tailwind CSS, ShadCN UI
+                    </div>
+                    <div class="stack-item">
+                        <strong>Backend</strong>
+                        Firebase Firestore, Firebase Authentication
+                    </div>
+                    <div class="stack-item">
+                        <strong>Tools</strong>
+                        Lucide Icons, QR Generator, Hardware Diagnostics
+                    </div>
+                </div>
+            </section>
+
+            <section class="detail-section">
+                <h2><i class="fas fa-download"></i> Exporting & Handover</h2>
+                <p>To download the source code from Firebase Studio for local server deployment:</p>
+                <div class="step-box">
+                    <ol>
+                        <li><strong>Locate the Header</strong>: Look at the top black bar of the interface (where it
+                            says <strong>YNH Asset Matrix</strong>).</li>
+                        <li><strong>Click Download</strong>: To the right of the project name, click the
+                            <strong>Download Source</strong> icon (downward arrow or ZIP folder).</li>
+                        <li><strong>Extract</strong>: Save the <code>.zip</code> file and extract it to your directory.
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="detail-section">
+                <h2><i class="fas fa-server"></i> Local Offline Hosting</h2>
+                <p>YAMS is designed to run within a hospital LAN without requiring an active internet connection.</p>
+
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Node.js 18.x or 20.x</li>
+                    <li>Java Runtime Environment (JRE) 11+</li>
+                    <li>Firebase CLI (<code>npm install -g firebase-tools</code>)</li>
+                </ul>
+
+                <h3>Deployment Steps</h3>
+                <pre><code># 1. Install Dependencies
+npm install
+
+# 2. Build the Application
+npm run build
+
+# 3. Configure Local Backend
+firebase init emulators
+# Select: Firestore, Authentication
+
+# 4. Start the System
+firebase emulators:start</code></pre>
+
+                <h3>LAN Access Configuration</h3>
+                <ul>
+                    <li>Set a static IP for the server (e.g., <code>192.168.1.50</code>).</li>
+                    <li>Update the <code>host</code> property in <code>firebase.json</code> to <code>"0.0.0.0"</code>.
+                    </li>
+                    <li>Open ports <strong>3000</strong>, <strong>8080</strong>, and <strong>9099</strong> in the
+                        firewall.</li>
+                </ul>
+            </section>
+
+            <section class="detail-section">
+                <h2><i class="fas fa-folder-open"></i> Folder Structure</h2>
+                <pre><code>/src/app      # Next.js App Router routes
+/src/components # UI & Business components
+/src/firebase # Backend config & data hooks
+/src/lib      # IP calculations & Utility functions
+/src/context  # Global state (Security PINs)</code></pre>
+            </section>
+
+            <section class="detail-section">
+                <h2><i class="fas fa-star"></i> Key Features</h2>
+                <ul>
+                    <li><strong>Asset Registry</strong>: Hardware tracking with auto-generated serials (XXYYZZZ).</li>
+                    <li><strong>Network Map</strong>: Visualization of IP pools and conflict assignments.</li>
+                    <li><strong>Keyboard Tester</strong>: Diagnostic tool for rapid hardware validation.</li>
+                    <li><strong>Audit Reports</strong>: Filterable and printable inventory lists.</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mubin Roshan. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
