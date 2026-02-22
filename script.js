@@ -46,51 +46,39 @@ window.addEventListener('scroll', () => {
 
 // Form Submission & Modal
 const contactForm = document.getElementById('contact-form');
-const modal = document.getElementById('success-modal');
-const closeModal = document.getElementById('close-modal');
+const successModal = document.getElementById('success-modal');
+const closeModalBtn = document.getElementById('close-modal');
+let submitted = false;
+
+// Global function for iframe onload
+window.showSuccessModal = function () {
+    if (successModal) {
+        successModal.classList.add('active');
+        const btn = contactForm.querySelector('button');
+        btn.textContent = 'Message Sent!';
+        btn.style.background = 'var(--primary)';
+        btn.style.color = 'var(--secondary)';
+        contactForm.reset();
+
+        setTimeout(() => {
+            btn.textContent = 'Send Message';
+            btn.style.background = 'var(--secondary)';
+            btn.style.color = 'var(--white)';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            submitted = false;
+        }, 3000);
+    }
+};
 
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
         const btn = contactForm.querySelector('button');
-        const originalText = btn.textContent;
-        const formData = new FormData(contactForm);
-
         btn.textContent = 'Sending...';
         btn.style.opacity = '0.7';
         btn.disabled = true;
-
-        // Send data to Google Forms
-        fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors'
-        }).then(() => {
-            // Show Success Modal
-            successModal.classList.add('active');
-
-            btn.textContent = 'Message Sent!';
-            btn.style.background = 'var(--accent)';
-            contactForm.reset();
-
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
-                btn.disabled = false;
-                btn.style.opacity = '1';
-            }, 3000);
-        }).catch(err => {
-            console.error('Submission error:', err);
-            btn.textContent = 'Error!';
-            btn.style.background = '#ff4b2b';
-
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.disabled = false;
-                btn.style.opacity = '1';
-                btn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
-            }, 3000);
-        });
+        submitted = true;
+        // Form will submit naturally to the hidden iframe
     });
 }
 
