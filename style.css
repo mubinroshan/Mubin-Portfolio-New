@@ -23,12 +23,10 @@
 [data-theme="dark"] {
     --bg-color: #0d1410;
     --bg-alt: #16251d;
-    --text-color: #b0b0b0;
+    --text-color: #d1d1d1;
     --heading-color: #ffffff;
     --card-bg: #1a2a22;
     --border-color: rgba(255, 255, 255, 0.05);
-    --white: #1a2a22;
-    --dark: #ffffff;
     --input-bg: rgba(255, 255, 255, 0.05);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -874,7 +872,7 @@ nav .container {
 .footer-column h4 {
     margin-bottom: 2rem;
     font-size: 1.2rem;
-    color: var(--dark);
+    color: var(--heading-color);
 }
 
 .footer-links {
@@ -897,7 +895,7 @@ nav .container {
 
 .footer-newsletter p {
     margin-bottom: 2rem;
-    color: var(--body-text);
+    color: var(--text-color);
 }
 
 .newsletter-form {
