@@ -22,14 +22,24 @@
             --body-text: #555555;
             --white: #ffffff;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+            /* Theme Variables inherited or redefined for consistency */
+            --yams-bg: var(--bg-color, #ffffff);
+            --yams-text: var(--text-color, #555555);
+            --yams-heading: var(--heading-color, #111111);
+            --yams-card: var(--card-bg, #ffffff);
+            --yams-border: var(--border-color, #eeeeee);
+            --yams-accent: var(--primary);
+            --yams-text-dim: var(--text-color, #888);
         }
 
         body {
-            background-color: var(--white);
-            color: var(--body-text);
+            background-color: var(--yams-bg);
+            color: var(--yams-text);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             line-height: 1.6;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .yams-container {
@@ -40,17 +50,17 @@
 
         /* --- Global Elements --- */
         .glass-card {
-            background: var(--white);
-            border: 1px solid #eee;
+            background: var(--yams-card);
+            border: 1px solid var(--yams-border);
             border-radius: 2rem;
             padding: 3rem 2.5rem;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.5s ease;
         }
 
         .section-divider {
             height: 1px;
-            background: #eee;
+            background: var(--yams-border);
             margin: 4rem 0;
         }
 
@@ -69,21 +79,21 @@
         }
 
         .badge-gray {
-            background: #eee;
-            color: var(--body-text);
+            background: var(--yams-border);
+            color: var(--yams-text);
         }
 
         /* --- 1. Hero Section --- */
         .hero {
             padding: 10rem 0 6rem;
             text-align: center;
-            background: var(--white);
+            background: var(--yams-bg);
         }
 
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: var(--yams-heading);
             font-family: 'Outfit', sans-serif;
         }
 
@@ -128,8 +138,8 @@
         }
 
         .btn-yams-outline {
-            border: 1px solid #ddd;
-            color: var(--body-text);
+            border: 1px solid var(--yams-border);
+            color: var(--yams-text);
             cursor: not-allowed;
             opacity: 0.6;
         }
@@ -152,8 +162,8 @@
         }
 
         .highlight-box {
-            background: #f9f9f9;
-            border: 1px solid #eee;
+            background: var(--input-bg);
+            border: 1px solid var(--yams-border);
             padding: 1.5rem;
             border-radius: 1rem;
             text-align: center;
@@ -224,7 +234,7 @@
             justify-content: center;
             gap: 3rem;
             margin: 3rem 0;
-            background: #f9f9f9;
+            background: var(--input-bg);
             padding: 3rem;
             border-radius: 2rem;
             position: relative;
@@ -272,8 +282,8 @@
 
         .module-card {
             padding: 1.5rem;
-            background: var(--white);
-            border: 1px solid #eee;
+            background: var(--yams-card);
+            border: 1px solid var(--yams-border);
             border-radius: 1.5rem;
             transition: all 0.3s ease;
         }
@@ -402,12 +412,12 @@
 
         /* --- 9. Deployment --- */
         .deployment-code {
-            background: #f4f4f4;
+            background: var(--input-bg);
             padding: 1.5rem;
             border-radius: 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--yams-border);
             font-family: 'Courier New', Courier, monospace;
-            color: var(--dark);
+            color: var(--yams-heading);
         }
 
         .deployment-code .highlight {
@@ -469,11 +479,23 @@
             <a href="index.html" class="logo"
                 style="color:var(--white); text-decoration:none; font-family:'Outfit'; font-weight:700; font-size:1.4rem;">M.
                 <span style="color:var(--primary)">ROSHAN</span></a>
-            <ul class="nav-links" style="display:flex; list-style:none; gap:2rem; margin:0;">
+            <ul class="nav-links" style="display:flex; list-style:none; gap:2rem; margin:0; align-items:center;">
                 <li><a href="index.html"
                         style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:0.9rem;">Home</a></li>
                 <li><a href="index.html#projects"
                         style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:0.9rem;">Projects</a></li>
+                <li style="margin-left: 0.5rem;">
+                    <div class="theme-switch" id="theme-switch" style="width: 50px; height: 26px;">
+                        <div class="switch-track"
+                            style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; position: relative; height: 100%; width: 100%;">
+                            <div class="switch-handle"
+                                style="width: 18px; height: 18px; top: 3px; left: 4px; background: var(--primary); border-radius: 50%; position: absolute; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);">
+                                <i class="fas fa-sun sun-icon" style="font-size: 0.7rem;"></i>
+                                <i class="fas fa-moon moon-icon" style="font-size: 0.7rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="index.html#contact"
                         style="color:var(--secondary); background:var(--white); padding:0.5rem 1.2rem; border-radius:999px; text-decoration:none; font-weight:600; font-size:0.85rem;">Contact</a>
                 </li>
@@ -729,6 +751,7 @@
         <p style="color: var(--yams-text-dim);">&copy; 2026 Mubin Roshan. Built for YNH IT.</p>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         // Simple scroll reveal for cards
         const observer = new IntersectionObserver((entries) => {

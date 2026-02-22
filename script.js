@@ -22,8 +22,31 @@ const reveal = () => {
 
 window.addEventListener('scroll', reveal);
 
-// Navigation Scroll effect - Not needed for pill navbar usually but good for active link
-const navLinks = document.querySelectorAll('.nav-links a');
+// Mobile Menu Toggle
+const menuBtn = document.getElementById('mobile-menu-btn');
+const navLinksContainer = document.querySelector('.nav-links');
+const navLinksItems = document.querySelectorAll('.nav-links a');
+
+if (menuBtn && navLinksContainer) {
+    menuBtn.addEventListener('click', () => {
+        navLinksContainer.classList.toggle('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Close menu when a link is clicked
+    navLinksItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navLinksContainer.classList.remove('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        });
+    });
+}
+
+// Navigation Scroll effect
 const sections = document.querySelectorAll('section');
 
 window.addEventListener('scroll', () => {
@@ -36,7 +59,7 @@ window.addEventListener('scroll', () => {
         }
     });
 
-    navLinks.forEach(a => {
+    navLinksItems.forEach(a => {
         a.classList.remove('active');
         if (a.getAttribute('href').includes(current)) {
             a.classList.add('active');
@@ -86,6 +109,24 @@ if (contactForm) {
 if (closeModalBtn) {
     closeModalBtn.addEventListener('click', () => {
         successModal.classList.remove('active');
+    });
+}
+
+// Theme Toggle Logic
+const themeSwitch = document.getElementById('theme-switch');
+const htmlElement = document.documentElement;
+
+// Check for saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+htmlElement.setAttribute('data-theme', savedTheme);
+
+if (themeSwitch) {
+    themeSwitch.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
     });
 }
 
