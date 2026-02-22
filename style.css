@@ -563,12 +563,12 @@ nav .container {
 .social-icons {
     display: flex;
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
 }
 
 .social-icons a {
-    color: var(--light);
-    font-size: 1.5rem;
+    color: var(--primary);
+    font-size: 1.8rem;
     transition: var(--transition);
 }
 
