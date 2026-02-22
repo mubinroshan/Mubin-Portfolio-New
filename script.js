@@ -130,6 +130,48 @@ if (themeSwitch) {
     });
 }
 
+// Certificate Modal Logic
+const certModal = document.getElementById('cert-viewer-modal');
+const certModalImg = document.getElementById('cert-modal-img');
+const closeCertBtn = document.getElementById('close-cert-modal');
+const certCards = document.querySelectorAll('.certificate-card');
+
+if (certModal && certCards.length > 0) {
+    certCards.forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const imgSrc = card.querySelector('img').src;
+            const imgAlt = card.querySelector('img').alt;
+            certModalImg.src = imgSrc;
+            certModalImg.alt = imgAlt;
+            certModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    const closeViewer = () => {
+        certModal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    };
+
+    if (closeCertBtn) {
+        closeCertBtn.addEventListener('click', closeViewer);
+    }
+
+    certModal.addEventListener('click', (e) => {
+        if (e.target === certModal) {
+            closeViewer();
+        }
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && certModal.classList.contains('active')) {
+            closeViewer();
+        }
+    });
+}
+
 // Close modal on click outside content
 window.addEventListener('click', (e) => {
     if (e.target === successModal) {

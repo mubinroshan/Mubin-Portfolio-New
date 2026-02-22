@@ -29,6 +29,7 @@
                 <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#certificates">Certificates</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#domains">Domains</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -152,6 +153,47 @@
 
                     <div style="margin-top: 3rem;">
                         <a href="#" class="btn primary">Download CV <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Certificates Section -->
+    <section id="certificates" class="section">
+        <div class="container">
+            <span class="component-label">Certifications</span>
+            <h2 class="section-title">Professional <span>Achievements</span></h2>
+
+            <div class="certificates-grid">
+                <div class="certificate-card reveal">
+                    <div class="cert-img">
+                        <img src="assets/ceh_certificate.png" alt="EC-Council Certified Ethical Hacker (CEH)">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Certified Ethical Hacker (CEH)</h3>
+                        <p>EC-Council | Issued: Aug 2024</p>
+                        <div class="cert-badge">Verified Expert</div>
+                    </div>
+                </div>
+                <div class="certificate-card reveal">
+                    <div class="cert-img">
+                        <img src="assets/google_digital_garage.png" alt="Google Digital Garage - Digital Marketing">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Fundamentals of Digital Marketing</h3>
+                        <p>Google Digital Garage | Issued: Jun 2021</p>
+                        <div class="cert-badge">Google Certified</div>
+                    </div>
+                </div>
+                <div class="certificate-card reveal">
+                    <div class="cert-img">
+                        <img src="assets/ceh_certificate.png" alt="Professional Certification">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Oracle Certified Associate</h3>
+                        <p>Oracle | Issued: Dec 2024</p>
+                        <div class="cert-badge">Database Spec</div>
                     </div>
                 </div>
             </div>
@@ -435,6 +477,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Certificate Modal -->
+    <div class="cert-modal" id="cert-viewer-modal">
+        <div class="cert-modal-content">
+            <span class="cert-modal-close" id="close-cert-modal">&times;</span>
+            <img id="cert-modal-img" src="" alt="Certificate View">
+        </div>
+    </div>
 
     <!-- Success Modal -->
     <div id="success-modal" class="modal-wrapper">
