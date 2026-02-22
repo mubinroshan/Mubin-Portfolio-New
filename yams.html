@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="YAMS - YNH Asset Management System. Technical details and deployment guide.">
-    <title>YAMS Project Details | Mubin Roshan</title>
+    <meta name="description"
+        content="YAMS - YNH Asset Management System. Enterprise IT Asset Lifecycle Management Platform.">
+    <title>YAMS | Enterprise IT Infrastructure</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,150 +15,469 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
-        .project-detail-container {
-            padding: 8rem 0 5rem;
-            max-width: 900px;
+        :root {
+            --yams-accent: #3377DD;
+            --yams-bg: #0f172a;
+            --yams-card: #1e293b;
+            --yams-border: rgba(148, 163, 184, 0.1);
+            --yams-text: #f8fafc;
+            --yams-text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: var(--yams-bg);
+            color: var(--yams-text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .yams-container {
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
+        /* --- Global Elements --- */
+        .glass-card {
+            background: var(--yams-card);
+            border: 1px solid var(--yams-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--yams-border), transparent);
+            margin: 4rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-primary {
+            background: rgba(51, 119, 221, 0.15);
+            color: var(--yams-accent);
+            border: 1px solid var(--yams-accent);
+        }
+
+        .badge-gray {
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--yams-text-dim);
+            border: 1px solid var(--yams-border);
+        }
+
+        /* --- 1. Hero Section --- */
+        .hero {
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(51, 119, 221, 0.1), transparent);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(51, 119, 221, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 119, 221, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: linear-gradient(to bottom, black, transparent);
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, var(--yams-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--yams-accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--yams-text-dim);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-yams {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
             text-decoration: none;
-            margin-bottom: 2rem;
-            font-weight: 500;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
-        .back-btn:hover {
-            transform: translateX(-5px);
+        .btn-yams-primary {
+            background: var(--yams-accent);
+            color: white;
+            box-shadow: 0 4px 14px rgba(51, 119, 221, 0.3);
         }
 
-        .detail-card {
-            background: var(--darker);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 3rem;
+        .btn-yams-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(51, 119, 221, 0.4);
         }
 
-        .detail-header {
-            margin-bottom: 3rem;
+        .btn-yams-outline {
+            border: 1px solid var(--yams-border);
+            color: var(--yams-text-dim);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* --- 2. Overview --- */
+        .overview-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--yams-accent);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--yams-border);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
             text-align: center;
         }
 
-        .detail-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .highlight-box i {
+            font-size: 1.5rem;
+            color: var(--yams-accent);
+            margin-bottom: 0.75rem;
+            display: block;
         }
 
-        .detail-header p {
-            font-size: 1.2rem;
-            color: var(--light);
+        .highlight-box span {
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .detail-section {
-            margin-bottom: 3rem;
+        /* --- 3. Tech Stack --- */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
-        .detail-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+        .tech-card {
+            border-left: 4px solid var(--yams-accent);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: #fff;
+        }
+
+        .tech-card h3 {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            color: var(--secondary);
+            gap: 0.75rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
 
-        .detail-section h2::after {
-            content: '';
-            height: 1px;
-            flex-grow: 1;
-            background: var(--glass-border);
-        }
-
-        .detail-section ul {
+        .tech-card ul {
             list-style: none;
-            padding-left: 0;
-        }
-
-        .detail-section li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--light);
-        }
-
-        .detail-section li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        code {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            color: var(--primary);
-        }
-
-        pre {
-            background: #0d1117;
-            padding: 1.5rem;
-            border-radius: 12px;
-            overflow-x: auto;
-            border: 1px solid var(--glass-border);
-            margin: 1.5rem 0;
-        }
-
-        pre code {
-            background: none;
             padding: 0;
-            color: #e6edf3;
+            margin: 0;
         }
 
-        .stack-grid {
+        .tech-card li {
+            color: var(--yams-text-dim);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            color: var(--yams-accent);
+        }
+
+        /* --- 4. Architecture --- */
+        .arch-viz {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            border-radius: 1rem;
+            position: relative;
+        }
+
+        .arch-box {
+            background: var(--yams-card);
+            border: 1px solid var(--yams-accent);
+            padding: 1.5rem 2.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        .arch-arrow {
+            color: var(--yams-accent);
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateX(0);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateX(10px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 0.5;
+            }
+        }
+
+        /* --- 5. Core Modules --- */
+        .module-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
         }
 
-        .stack-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .stack-item strong {
-            display: block;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-        }
-
-        .step-box {
-            background: rgba(94, 255, 0, 0.05);
-            border-left: 4px solid var(--primary);
+        .module-card {
             padding: 1.5rem;
-            border-radius: 0 10px 10px 0;
-            margin: 1rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .project-detail-container {
-                padding: 6rem 1.5rem 3rem;
+        .module-card:hover {
+            background: rgba(51, 119, 221, 0.05);
+            border-color: var(--yams-accent);
+            box-shadow: 0 0 20px rgba(51, 119, 221, 0.1);
+        }
+
+        .module-card i {
+            font-size: 2rem;
+            color: var(--yams-accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .module-card h4 {
+            margin: 0 0 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .module-card ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--yams-text-dim);
+        }
+
+        .module-card li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* --- 6. Data Relationships --- */
+        .data-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .data-node {
+            background: rgba(51, 119, 221, 0.1);
+            border: 2px solid var(--yams-accent);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            position: relative;
+            box-shadow: 0 0 15px rgba(51, 119, 221, 0.2);
+        }
+
+        .data-node::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--yams-accent);
+            border-radius: 50%;
+            top: -5px;
+            box-shadow: 0 0 10px var(--yams-accent);
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg) translateX(60px);
             }
 
-            .detail-card {
-                padding: 1.5rem;
+            to {
+                transform: rotate(360deg) translateX(60px);
+            }
+        }
+
+        /* --- 7. Security --- */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sec-icon-panel {
+            background: linear-gradient(135deg, rgba(51, 119, 221, 0.1), transparent);
+            border: 1px solid var(--yams-border);
+            border-radius: 2rem;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--yams-accent);
+        }
+
+        /* --- 8. Performance --- */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--yams-accent);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--yams-text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- 9. Deployment --- */
+        .deployment-code {
+            background: #020617;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--yams-border);
+            font-family: 'Courier New', Courier, monospace;
+            color: #d1d5db;
+        }
+
+        .deployment-code .highlight {
+            color: #38bdf8;
+        }
+
+        /* --- 10. Footer CTA --- */
+        .footer-cta {
+            text-align: center;
+            margin-bottom: 8rem;
+        }
+
+        .footer-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Media Queries --- */
+        @media (max-width: 900px) {
+
+            .tech-grid,
+            .highlight-grid,
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .detail-header h1 {
-                font-size: 2.2rem;
+            .split-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .tech-grid,
+            .highlight-grid,
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .arch-viz {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .arch-arrow {
+                transform: rotate(90deg);
             }
         }
     </style>
@@ -165,120 +485,283 @@
 
 <body>
     <nav class="navbar active">
-        <div class="container">
+        <div class="yams-container"
+            style="display:flex; justify-content: space-between; align-items: center; padding-top:1.5rem;">
             <a href="index.html" class="logo">Mubin<span>Roshan</span></a>
-            <ul class="nav-links">
+            <ul class="nav-links" style="display:flex; list-style:none; gap:2rem;">
                 <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="container project-detail-container">
-        <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
-
-        <div class="detail-card">
-            <header class="detail-header">
-                <h1>YAMS | YNH Asset Management System</h1>
-                <p>A modern IT Inventory and Network Mapping system built for YNH Hospital.</p>
-            </header>
-
-            <section class="detail-section">
-                <h2><i class="fas fa-layer-group"></i> Technical Stack</h2>
-                <div class="stack-grid">
-                    <div class="stack-item">
-                        <strong>Frontend</strong>
-                        Next.js 14, React 18, Tailwind CSS, ShadCN UI
-                    </div>
-                    <div class="stack-item">
-                        <strong>Backend</strong>
-                        Firebase Firestore, Firebase Authentication
-                    </div>
-                    <div class="stack-item">
-                        <strong>Tools</strong>
-                        Lucide Icons, QR Generator, Hardware Diagnostics
-                    </div>
-                </div>
-            </section>
-
-            <section class="detail-section">
-                <h2><i class="fas fa-download"></i> Exporting & Handover</h2>
-                <p>To download the source code from Firebase Studio for local server deployment:</p>
-                <div class="step-box">
-                    <ol>
-                        <li><strong>Locate the Header</strong>: Look at the top black bar of the interface (where it
-                            says <strong>YNH Asset Matrix</strong>).</li>
-                        <li><strong>Click Download</strong>: To the right of the project name, click the
-                            <strong>Download Source</strong> icon (downward arrow or ZIP folder).</li>
-                        <li><strong>Extract</strong>: Save the <code>.zip</code> file and extract it to your directory.
-                        </li>
-                    </ol>
-                </div>
-            </section>
-
-            <section class="detail-section">
-                <h2><i class="fas fa-server"></i> Local Offline Hosting</h2>
-                <p>YAMS is designed to run within a hospital LAN without requiring an active internet connection.</p>
-
-                <h3>Prerequisites</h3>
-                <ul>
-                    <li>Node.js 18.x or 20.x</li>
-                    <li>Java Runtime Environment (JRE) 11+</li>
-                    <li>Firebase CLI (<code>npm install -g firebase-tools</code>)</li>
-                </ul>
-
-                <h3>Deployment Steps</h3>
-                <pre><code># 1. Install Dependencies
-npm install
-
-# 2. Build the Application
-npm run build
-
-# 3. Configure Local Backend
-firebase init emulators
-# Select: Firestore, Authentication
-
-# 4. Start the System
-firebase emulators:start</code></pre>
-
-                <h3>LAN Access Configuration</h3>
-                <ul>
-                    <li>Set a static IP for the server (e.g., <code>192.168.1.50</code>).</li>
-                    <li>Update the <code>host</code> property in <code>firebase.json</code> to <code>"0.0.0.0"</code>.
-                    </li>
-                    <li>Open ports <strong>3000</strong>, <strong>8080</strong>, and <strong>9099</strong> in the
-                        firewall.</li>
-                </ul>
-            </section>
-
-            <section class="detail-section">
-                <h2><i class="fas fa-folder-open"></i> Folder Structure</h2>
-                <pre><code>/src/app      # Next.js App Router routes
-/src/components # UI & Business components
-/src/firebase # Backend config & data hooks
-/src/lib      # IP calculations & Utility functions
-/src/context  # Global state (Security PINs)</code></pre>
-            </section>
-
-            <section class="detail-section">
-                <h2><i class="fas fa-star"></i> Key Features</h2>
-                <ul>
-                    <li><strong>Asset Registry</strong>: Hardware tracking with auto-generated serials (XXYYZZZ).</li>
-                    <li><strong>Network Map</strong>: Visualization of IP pools and conflict assignments.</li>
-                    <li><strong>Keyboard Tester</strong>: Diagnostic tool for rapid hardware validation.</li>
-                    <li><strong>Audit Reports</strong>: Filterable and printable inventory lists.</li>
-                </ul>
-            </section>
+    <!-- 1. HERO SECTION -->
+    <header class="hero">
+        <div class="yams-container">
+            <span class="badge badge-primary">v0.7 Stable</span>
+            <h1>YNH Asset Management System</h1>
+            <p class="subtitle">Enterprise IT Asset Lifecycle Management Platform</p>
+            <p>A modern, high-performance platform centralizing infrastructure tracking, maintenance records, and
+                network mapping for Yanbu National Hospital.</p>
+            <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                <span class="badge badge-gray">Next.js 14</span>
+                <span class="badge badge-gray">Firebase</span>
+                <span class="badge badge-gray">Tailwind CSS</span>
+                <span class="badge badge-gray">React 18</span>
+            </div>
+            <div class="cta-group">
+                <a href="#arch" class="btn-yams btn-yams-primary">View Architecture</a>
+                <a href="#" class="btn-yams btn-yams-outline">View Live Demo (LAN Only)</a>
+            </div>
         </div>
+    </header>
+
+    <div class="yams-container">
+        <!-- 2. OVERVIEW CONTAINER -->
+        <section class="glass-card">
+            <div class="overview-title">
+                <i class="fas fa-th-large"></i> Project Overview
+            </div>
+            <p><strong>Purpose:</strong> YAMS solves critical operational challenges by transition from fragmented
+                tracking to a unified, serverless infrastructure platform.</p>
+            <p><strong>Problem Statement:</strong> Hospital IT environments often suffer from IP conflicts, untracked
+                hardware lifecycles, and disconnected maintenance logs.</p>
+            <p><strong>Key Goals:</strong> Centralize data, automate hardware identification, and provide real-time
+                network visibility for IT administrators.</p>
+            <div class="highlight-grid">
+                <div class="highlight-box">
+                    <i class="fas fa-barcode"></i>
+                    <span>Asset Tracking</span>
+                </div>
+                <div class="highlight-box">
+                    <i class="fas fa-signal"></i>
+                    <span>Real-Time Monitoring</span>
+                </div>
+                <div class="highlight-box">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure Access</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 3. TECH STACK SECTION -->
+        <section class="detail-section">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Core Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="glass-card tech-card">
+                    <h3><i class="fas fa-code"></i> Frontend</h3>
+                    <ul>
+                        <li>Next.js 14 (App Router)</li>
+                        <li>React 18 & Lucide Icons</li>
+                        <li>Tailwind CSS Styling</li>
+                        <li>ShadCN UI Framework</li>
+                    </ul>
+                </div>
+                <div class="glass-card tech-card">
+                    <h3><i class="fas fa-database"></i> Backend</h3>
+                    <ul>
+                        <li>Cloud Firestore (NoSQL)</li>
+                        <li>Firebase Auth (Anonymous)</li>
+                        <li>Real-time Data Hooks</li>
+                        <li>Firestore Security Rules</li>
+                    </ul>
+                </div>
+                <div class="glass-card tech-card">
+                    <h3><i class="fas fa-server"></i> Deployment</h3>
+                    <ul>
+                        <li>Serverless Architecture</li>
+                        <li>Offline LAN Ready</li>
+                        <li>Firebase Emulator Suite</li>
+                        <li>Local Hospital Infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 4. ARCHITECTURE DIAGRAM -->
+        <section id="arch">
+            <h2 style="text-align: center;">Technical Architecture</h2>
+            <div class="arch-viz">
+                <div class="arch-box">Next.js Client</div>
+                <div class="arch-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                <div class="arch-box">Firebase SDK</div>
+                <div class="arch-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                <div class="arch-box">Firestore / Auth</div>
+            </div>
+            <p style="text-align: center; color: var(--yams-text-dim); max-width: 700px; margin: 0 auto;">
+                YAMS utilizes a direct-to-firebase client architecture, removing the need for an intermediary API
+                server, reducing latency and simplifying LAN deployment.
+            </p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 5. CORE MODULES -->
+        <section>
+            <h2 style="margin-bottom: 2rem;">Platform Modules</h2>
+            <div class="module-grid">
+                <div class="glass-card module-card">
+                    <i class="fas fa-tags"></i>
+                    <h4>Asset Registry</h4>
+                    <ul>
+                        <li>Gap-filling Serial Logic</li>
+                        <li>Department Linkage</li>
+                        <li>Hardware Prefixing</li>
+                    </ul>
+                </div>
+                <div class="glass-card module-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h4>Network Map</h4>
+                    <ul>
+                        <li>IP Conflict Engine</li>
+                        <li>Pool Tracking</li>
+                        <li>Real-time Visualization</li>
+                    </ul>
+                </div>
+                <div class="glass-card module-card">
+                    <i class="fas fa-wrench"></i>
+                    <h4>Maintenance</h4>
+                    <ul>
+                        <li>Historical Repair Logs</li>
+                        <li>Lifecycle Monitoring</li>
+                        <li>Status Triggers</li>
+                    </ul>
+                </div>
+                <div class="glass-card module-card">
+                    <i class="fas fa-keyboard"></i>
+                    <h4>Hardware Tester</h4>
+                    <ul>
+                        <li>Key Detection System</li>
+                        <li>IT Diagnostics</li>
+                        <li>Input Validation</li>
+                    </ul>
+                </div>
+                <div class="glass-card module-card">
+                    <i class="fas fa-print"></i>
+                    <h4>Print Engine</h4>
+                    <ul>
+                        <li>CSS Sticker Generator</li>
+                        <li>6x3 Optimized Format</li>
+                        <li>Batch Label Creation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 6. DATA RELATIONSHIPS -->
+        <section>
+            <h2 style="text-align: center;">Data Flow & Relationships</h2>
+            <div class="data-flow">
+                <div class="data-node">Central Inventory</div>
+                <div class="data-node">Maintenance Logs</div>
+                <div class="data-node">Department Map</div>
+            </div>
+            <p style="text-align: center; color: var(--yams-text-dim); margin-top: 2rem;">
+                Relational consistency is maintained across the NoSQL architecture through strict ID linking:
+                <br><code>Inventory → Dept (ID)</code> | <code>Logs → Inventory (ID)</code> |
+                <code>Inventory → Specs (ID)</code>
+            </p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 7. SECURITY & AUTH -->
+        <section class="split-layout">
+            <div>
+                <h2>Security Architecture</h2>
+                <ul class="tech-card" style="border-left-color: #ef4444; list-style: none;">
+                    <li><strong style="color:#fff">Silent Auth:</strong> Seamless hospital staff entry via Gate logic.
+                    </li>
+                    <li><strong style="color:#fff">PIN Protection:</strong> High-security actions require secret PIN
+                        verification.</li>
+                    <li><strong style="color:#fff">Identity Rules:</strong> Granular read/write permissions at the DB
+                        layer.</li>
+                    <li><strong style="color:#fff">LAN Sandbox:</strong> Fully isolated from public internet traffic.
+                    </li>
+                </ul>
+            </div>
+            <div class="sec-icon-panel">
+                <i class="fas fa-user-shield"></i>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 8. PERFORMANCE Stat Boxes -->
+        <section class="stat-grid">
+            <div class="glass-card stat-box">
+                <span class="stat-value">Real-time</span>
+                <span class="stat-label">Sync Update</span>
+            </div>
+            <div class="glass-card stat-box">
+                <span class="stat-value">Zero</span>
+                <span class="stat-label">Serial Gaps</span>
+            </div>
+            <div class="glass-card stat-box">
+                <span class="stat-value">Conflict</span>
+                <span class="stat-label">IP Detection</span>
+            </div>
+            <div class="glass-card stat-box">
+                <span class="stat-value">Offline</span>
+                <span class="stat-label">LAN Capable</span>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 9. DEPLOYMENT -->
+        <section>
+            <h2 style="margin-bottom: 1.5rem;">LAN Deployment Setup</h2>
+            <div class="deployment-code">
+                <span class="highlight"># Access hospital LAN host</span><br>
+                Host Server IP: 192.168.1.50:3000<br>
+                <span class="highlight"># Required Stack</span><br>
+                Runtime: Node.js 18+<br>
+                Backend: Firebase Emulator 12.x
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 10. FOOTER CTA -->
+        <section class="footer-cta">
+            <div class="glass-card">
+                <h2>Built for Enterprise IT Efficiency</h2>
+                <a href="https://github.com/mubinroshan" target="_blank" class="btn-yams btn-yams-primary">Explore
+                    Source Code</a>
+            </div>
+        </section>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Mubin Roshan. All rights reserved.</p>
-        </div>
+    <footer style="padding: 3rem 0; text-align: center; border-top: 1px solid var(--yams-border);">
+        <p style="color: var(--yams-text-dim);">&copy; 2026 Mubin Roshan. Built for YNH IT.</p>
     </footer>
+
+    <script>
+        // Simple scroll reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
 </body>
 
 </html>
