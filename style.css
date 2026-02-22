@@ -550,6 +550,16 @@ nav .container {
     font-size: 1.2rem;
 }
 
+.contact-links a {
+    color: var(--light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-links a:hover {
+    color: var(--primary);
+}
+
 .social-icons {
     display: flex;
     gap: 1.5rem;
